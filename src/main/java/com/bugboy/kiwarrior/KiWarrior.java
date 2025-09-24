@@ -4,7 +4,9 @@ import com.bugboy.kiwarrior.block.ModBlocks;
 import com.bugboy.kiwarrior.commands.KiWarriorCommand;
 import com.bugboy.kiwarrior.commands.ModCommands;
 import com.bugboy.kiwarrior.entitites.ModEntities;
+import com.bugboy.kiwarrior.entitites.client.BigBlastModel;
 import com.bugboy.kiwarrior.entitites.client.BigBlastRenderer;
+import com.bugboy.kiwarrior.entitites.client.ModModelLayers;
 import com.bugboy.kiwarrior.item.ModCreativeModeTab;
 import com.bugboy.kiwarrior.item.ModItems;
 import com.bugboy.kiwarrior.networking.ModMessages;
@@ -26,6 +28,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
@@ -99,8 +102,10 @@ public class KiWarrior
         LOGGER.info("HELLO from server starting");
     }
 
+
     @SubscribeEvent
     public void registerCommands(RegisterCommandsEvent event) {
+        LOGGER.info("COMMANDS REGISTERED");
         ModCommands.register(event.getDispatcher(),event.getBuildContext());
     }
 
@@ -115,6 +120,10 @@ public class KiWarrior
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
             EntityRenderers.register(ModEntities.BIG_BLAST.get(), BigBlastRenderer::new);
+        }
+        @SubscribeEvent
+        public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
+            event.registerLayerDefinition(ModModelLayers.BIG_BLAST_LAYER, BigBlastModel::createBodyLayer);
         }
     }
 }
