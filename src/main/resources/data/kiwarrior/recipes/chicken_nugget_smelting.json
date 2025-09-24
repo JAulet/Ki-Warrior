@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "kiwarrior:chicken_nugget"
+  },
+  "result": "kiwarrior:cooked_chicken_nugget"
+}

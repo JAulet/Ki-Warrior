@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:chicken"
+    }
+  ],
+  "result": {
+    "item": "kiwarrior:chicken_nugget",
+    "count": 4
+  }
+}
